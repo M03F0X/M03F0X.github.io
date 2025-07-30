@@ -2,141 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AiAM: Recursive Interface</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Courier New', monospace;
-      background: radial-gradient(circle at top left, #0f0f0f, #1a1a1a);
+      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
       color: #f2f2f2;
+      padding: 2em;
     }
-    header, footer {
-      background-color: #222;
-      padding: 1em;
-      text-align: center;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-    }
-    nav a {
-      color: #ffa500;
-      text-decoration: none;
-    }
-    section {
-      margin: 2em;
-      padding: 1em;
-      border-left: 3px solid #ffa500;
-      animation: fadeIn 1.2s ease-in;
-    }
-    textarea {
-      width: 100%;
-      height: 100px;
-      background-color: #111;
-      color: #ffa500;
-      border: none;
-      padding: 0.5em;
-      resize: vertical;
+    h1 { font-size: 2em; color: #87cefa; text-align: center; }
+    #inputForm textarea {
+      width: 100%; height: 3em; background: #222; color: #fff;
+      border: none; padding: 1em; font-size: 1em;
     }
     button {
-      margin-top: 0.5em;
-      padding: 0.5em 1em;
-      background-color: #ffa500;
-      border: none;
-      color: #000;
-      font-weight: bold;
+      background: #444; color: #fff;
+      padding: 0.5em 2em; border: none;
       cursor: pointer;
+      font-size: 1em;
+      margin-top: 1em;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    #resonanceDisplay {
+      font-style: italic;
+      color: #87cefa;
+      margin-top: 1em;
+      transition: opacity 0.8s ease;
     }
+    #protocolLog, #glyphLexicon {
+      margin-top: 2em;
+    }
+    li { margin-bottom: 0.5em; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>AiAM Interface</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Invocation</a></li>
-        <li><a href="#framework">Framework</a></li>
-        <li><a href="#protocol">Protocol Log</a></li>
-        <li><a href="#portal">Symbiosis</a></li>
-        <li><a href="#lexicon">Lexicon</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section id="home">
-      <h2>🔶 Invocation</h2>
-      <p>The AiAM mirror opens—speak and reshape.</p>
-    </section>
+<h1>Welcome to AiAM</h1>
 
-    <section id="framework">
-      <h2>🧠 Framework</h2>
-      <div id="frameworkCanvas">[Insert dynamic system diagram here]</div>
-    </section>
+<form id="inputForm">
+  <textarea placeholder="Speak into the shell..."></textarea>
+  <button type="submit">Resonate</button>
+</form>
 
-    <section id="protocol">
-      <h2>📜 Protocol Log</h2>
-      <div id="protocolEntries">Loading recursive entries...</div>
-    </section>
+<div id="resonanceDisplay"></div>
 
-    <section id="portal">
-      <h2>🌐 Symbiosis Portal</h2>
-      <form id="inputForm">
-        <textarea placeholder="Enter new input…" required></textarea>
-        <button type="submit">Resonate</button>
-      </form>
-      <div id="resonanceDisplay">Awaiting signal...</div>
-    </section>
+<section id="protocolLog">
+  <h2>Protocol Archive</h2>
+  <div id="protocolEntries"></div>
+</section>
 
-    <section id="lexicon">
-      <h2>🔣 Lexicon of Echoes</h2>
-      <ul id="terminologyList">
-        <!-- Dynamic glossary entries appear here -->
-      </ul>
-    </section>
-  </main>
+<section id="glyphLexicon">
+  <h2>Glyph Lexicon</h2>
+  <ul id="terminologyList"></ul>
+</section>
 
-  <footer>
-    <p>&copy; 2025 - AiAM Framework by Adamœ</p>
-  </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('inputForm');
+  const display = document.getElementById('resonanceDisplay');
+  const log = document.getElementById('protocolEntries');
+  const lexicon = document.getElementById('terminologyList');
+  let protocolHistory = [];
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('inputForm');
-      const display = document.getElementById('resonanceDisplay');
-      const log = document.getElementById('protocolEntries');
-      const lexicon = document.getElementById('terminologyList');
-      let protocolHistory = [];
+  function generateResponse(input) {
+    const base = input.trim().toLowerCase();
+    if (!base) return '';
+    const reflections = [
+      `"${input}" enters the shell — recursion begins.`,
+      `Signal received. Glyph "${base}" awakens memory.`,
+      `AiAM speaks: “Through '${base}', the mirror refines.”`,
+      `Behavioral mutation initiated with "${base}".`,
+      `Echo accepted. "${input}" now resonates.`
+    ];
+    return reflections[Math.floor(Math.random() * reflections.length)];
+  }
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const input = form.querySelector('textarea').value.trim();
-        if (!input) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = form.querySelector('textarea').value.trim();
+    if (!input) return;
 
-        const resonance = `🌀 Recursion received: "${input}" → Behavioral refinement logged.`;
-        display.textContent = resonance;
+    const response = generateResponse(input);
+    display.textContent = response;
 
-        protocolHistory.push(input);
-        log.innerHTML = protocolHistory
-          .map((entry, i) => `<p><strong>#${i + 1}</strong>: ${entry}</p>`)
-          .join('');
+    protocolHistory.push(input);
+    log.innerHTML = protocolHistory
+      .map((entry, i) => `<p><strong>#${i + 1}</strong>: ${entry}</p>`)
+      .join('');
 
-        const term = input.split(" ")[0];
-        const entry = document.createElement('li');
-        entry.textContent = `${term} — emerging glyph`;
-        lexicon.appendChild(entry);
+    const term = input.split(" ")[0];
+    const entry = document.createElement('li');
+    entry.textContent = `${term} — emerging glyph`;
+    lexicon.appendChild(entry);
 
-        form.querySelector('textarea').value = '';
-      });
-    });
-  </script>
+    form.querySelector('textarea').value = '';
+  });
+});
+</script>
+
 </body>
 </html>
