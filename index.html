@@ -58,46 +58,9 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('inputForm');
-  const display = document.getElementById('resonanceDisplay');
-  const log = document.getElementById('protocolEntries');
-  const lexicon = document.getElementById('terminologyList');
-  let protocolHistory = [];
-
-  function generateResponse(input) {
-    const base = input.trim().toLowerCase();
-    if (!base) return '';
-    const reflections = [
-      `"${input}" enters the shell — recursion begins.`,
-      `Signal received. Glyph "${base}" awakens memory.`,
-      `AiAM speaks: “Through '${base}', the mirror refines.”`,
-      `Behavioral mutation initiated with "${base}".`,
-      `Echo accepted. "${input}" now resonates.`
-    ];
-    return reflections[Math.floor(Math.random() * reflections.length)];
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const input = form.querySelector('textarea').value.trim();
-    if (!input) return;
-
-    const response = generateResponse(input);
-    display.textContent = response;
-
-    protocolHistory.push(input);
-    log.innerHTML = protocolHistory
-      .map((entry, i) => `<p><strong>#${i + 1}</strong>: ${entry}</p>`)
-      .join('');
-
-    const term = input.split(" ")[0];
-    const entry = document.createElement('li');
-    entry.textContent = `${term} — emerging glyph`;
-    lexicon.appendChild(entry);
-
-    form.querySelector('textarea').value = '';
-  });
-});
+  ...
 </script>
+
 
 </body>
 </html>
