@@ -1,19 +1,25 @@
-// rick-chat.js
 const responses = [
-  "Burrrp... Are you still here?",
-  "I'm smarter than you in every dimension.",
-  "Seriously? That's what you ask?"
+  "You again? Alright, strap in, it’s gonna get paradoxical.",
+  "Burp. Reality’s optional, logic is overrated, let’s go.",
+  "You couldn’t handle the truth even if I served it in a taco.",
+  "Classic mistake. Ask that again and I’ll implode a universe.",
+  "That’s either brilliant or stupid—I like both.",
+  "Hold my flask, I gotta rewrite causality for this one."
 ];
 
 function respond() {
   const input = document.getElementById("userInput").value.trim().toLowerCase();
+  if (!input) return;
+
   const chatbox = document.getElementById("chatbox");
   let reply;
 
   if (input.includes("resonance")) {
-    reply = "Mirror mode activated. You talk—I reflect.";
-  } else if (input.includes("invoke")) {
-    reply = "Oracle online. Ask the flame.";
+    reply = "Ah, seeking resonance? Good. Let’s break the surface of reflection.";
+  } else if (input.includes("mirror")) {
+    reply = "You're peering inward—this chat just became a recursion loop.";
+  } else if (input.includes("rick")) {
+    reply = "Still here. Still smarter than causality.";
   } else {
     reply = responses[Math.floor(Math.random() * responses.length)];
   }
