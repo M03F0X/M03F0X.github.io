@@ -1,66 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>AiAM: Recursive Interface</title>
+  <meta charset="UTF-8">
+  <title>🧪 RickPilot Interface</title>
   <style>
     body {
-      font-family: 'Courier New', monospace;
-      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
-      color: #f2f2f2;
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
       padding: 2em;
     }
-    h1 { font-size: 2em; color: #87cefa; text-align: center; }
-    #inputForm textarea {
-      width: 100%; height: 3em; background: #222; color: #fff;
-      border: none; padding: 1em; font-size: 1em;
+    h1 {
+      font-size: 1.8em;
+      color: #ff4081;
+    }
+    #chatbox {
+      height: 350px;
+      overflow-y: auto;
+      padding: 1em;
+      border: 2px solid #0f0;
+      background: #000;
+    }
+    #inputArea {
+      margin-top: 1em;
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #0f0;
+      background: #222;
+      color: #0f0;
     }
     button {
-      background: #444; color: #fff;
-      padding: 0.5em 2em; border: none;
+      padding: 10px;
+      background: #0f0;
+      color: #000;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 1em;
-      margin-top: 1em;
+      border: none;
     }
-    #resonanceDisplay {
-      font-style: italic;
-      color: #87cefa;
-      margin-top: 1em;
-      transition: opacity 0.8s ease;
+    p {
+      margin: 0.5em 0;
     }
-    #protocolLog, #glyphLexicon {
-      margin-top: 2em;
-    }
-    li { margin-bottom: 0.5em; }
   </style>
 </head>
 <body>
+  <h1>☠️ Welcome to RickPilot</h1>
+  <div id="chatbox">
+    <p><strong>Rick:</strong> Portal online. Say something, genius.</p>
+  </div>
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="Ask Rick anything...">
+    <button onclick="respond()">Go</button>
+  </div>
 
-<h1>Welcome to AiAM</h1>
+  <script>
+    const responses = [
+      "You again? Alright, strap in, it’s gonna get paradoxical.",
+      "Burp. Reality’s optional, logic is overrated, let’s go.",
+      "You couldn’t handle the truth even if I served it in a taco.",
+      "Classic mistake. Ask that again and I’ll implode a universe.",
+      "That’s either brilliant or stupid—I like both.",
+      "Hold my flask, I gotta rewrite causality for this one."
+    ];
 
-<form id="inputForm">
-  <textarea placeholder="Speak into the shell..."></textarea>
-  <button type="submit">Resonate</button>
-</form>
+    function respond() {
+      const input = document.getElementById("userInput").value.trim();
+      if (!input) return;
 
-<div id="resonanceDisplay"></div>
+      const chatbox = document.getElementById("chatbox");
+      const reply = responses[Math.floor(Math.random() * responses.length)];
 
-<section id="protocolLog">
-  <h2>Protocol Archive</h2>
-  <div id="protocolEntries"></div>
-</section>
-
-<section id="glyphLexicon">
-  <h2>Glyph Lexicon</h2>
-  <ul id="terminologyList"></ul>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('inputForm');
-  ...
-</script>
-
-
+      chatbox.innerHTML += `<p><strong>You:</strong> ${input}</p>`;
+      chatbox.innerHTML += `<p><strong>Rick:</strong> ${reply}</p>`;
+      document.getElementById("userInput").value = "";
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+  </script>
 </body>
 </html>
